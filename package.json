@@ -1,0 +1,33 @@
+{
+  "name": "fastify-quick-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
+    "lint": "oxlint src test",
+    "lint:fix": "oxlint --fix src test && oxfmt .",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "dependencies": {
+    "fastify": "^5.11.0"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.13.5",
+    "@swc/jest": "^0.2.39",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^26.1.2",
+    "jest": "^30.0.0",
+    "jest-mock-extended": "^4.0.0",
+    "oxfmt": "^0.61.0",
+    "oxlint": "^1.6.0",
+    "tsx": "^4.23.1",
+    "typescript": "^6.0.0"
+  }
+}
