@@ -16,6 +16,7 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "dependencies": {
+    "@fastify/env": "^7.0.0",
     "fastify": "^5.11.0"
   },
   "devDependencies": {

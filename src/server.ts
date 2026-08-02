@@ -1,10 +1,26 @@
+import env from '@fastify/env';
 import { app } from './app';
 
-app.listen({ port: 8080 }, (err, address): void => {
-  if (err) {
-    app.log.error(err);
-    process.exit(1);
-  }
+const envSchema = {
+  type: 'object',
+  required: ['PORT'],
+  properties: {
+    PORT: { type: 'integer', minimum: 1, maximum: 65535 },
+  },
+} as const;
 
-  app.log.info(`Server listening at ${address}`);
+const envFile = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
+
+const start = async (): Promise<void> => {
+  await app.register(env, {
+    schema: envSchema,
+    dotenv: { path: envFile },
+  });
+
+  await app.listen({ port: app.getEnvs<{ PORT: number }>().PORT });
+};
+
+start().catch((error: unknown): void => {
+  app.log.error(error);
+  process.exit(1);
 });
